@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>AmigosDeRua</title>
+</head>
+<body>
+  <header id="cabecalho">
+    <img src="imagens/logo (2).png" alt="logo" />
+    <nav id="menu">
+      <a href="#">QuemSomos</a>
+      <a href="#">QueroAdotar</a>
+      <a href="#">Parcerias</a>
+      <a href="#">Blog</a>
+      <a href="#">DOE E AJUDE</a>
+    </nav>
+  </header>
+
+  <main id="principal">
+    <h2>Quem Somos</h2>
+    <p>
+      Somos um projeto que conecta amantes dos animais, adotantes em potencial e ONGs por meio de um aplicativo simples e acessível. Nele, as organizações podem divulgar animais disponíveis para adoção, facilitando o encontro entre pets resgatados e pessoas dispostas a oferecer um novo lar.
+    </p>
+    <img src="imagens/centro-de-zoonoses-pet.jpg" alt="animais-resgatados" />
+
+    <h2>O Que Fazemos</h2>
+    <p>
+      O Amigos de Rua é muito mais que um projeto social — é uma ponte entre animais em situação de rua e pessoas dispostas a ajudar. Além de alimentarmos e resgatarmos cães e gatos abandonados, promovemos campanhas de cuidados, castração e adoção responsável. Nosso maior diferencial é o aplicativo Amigos de Rua, onde ONGs e protetores independentes podem divulgar animais disponíveis para adoção.
+      O app conecta quem precisa de ajuda com quem pode ajudar: pessoas encontram pets para adotar, fazem denúncias de maus-tratos e até oferecem lar temporário. Tudo isso de forma simples, rápida e acessível — porque salvar vidas nunca deveria ser complicado.
+    </p>
+    <img src="imagens/img_6447-scaled.webp" alt="pet2" />
+
+    <section>
+      <h1>Adote um Amigo</h1>
+      <p>Seu novo melhor amigo está esperando por você. Adote e transforme uma vida!</p>
+      <img src="imagens/934204911.jpg" alt="amigo" />
+    </section>
+
+    <section style="margin-top: 30px; background-color: #fffde7; padding: 20px; border: 1px solid #fdd835; border-radius: 10px;">
+      <h3>Usuários cadastrados:</h3>
+      <div id="usuarios"></div>
+    </section>
+  </main>
+
+  <footer>
+    <h4>Porque cada vida importa. Porque cada animal merece amor</h4>
+    <p>Projeto desenvolvido por: Hugo Pires de Oliveira • Pamela Figueiredo • Marcelo Luiz</p>
+    <p>© 2025 Amigos de Rua — Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const usuariosSalvos = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const container = document.getElementById("usuarios");
+
+    if (usuariosSalvos.length === 0) {
+      container.innerHTML = "<p>Nenhum usuário cadastrado ainda.</p>";
+    } else {
+      usuariosSalvos.forEach((usuario, i) => {
+        const p = document.createElement("p");
+        p.innerText = `${i + 1}. Nome: ${usuario.nome} | Email: ${usuario.email}`;
+        container.appendChild(p);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Amigos de Rua</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8e1;
+      height: 100vh;
+      background-image: url(imagens/fundo.png);
+      background-size: cover;
+      background-position: center;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      border: 2px solid #fdd835;
+      padding: 40px 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #5d4037;
+      margin-bottom: 10px;
+    }
+
+    .mensagem {
+      font-size: 14px;
+      color: #6d4c41;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      color: #4e342e;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #d7ccc8;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #fdd835;
+      color: #4e342e;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #fbc02d;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="form-container">
+      <h2>Cadastre-se</h2>
+      <p class="mensagem">Junte-se a nós e transforme a vida de um animal!</p>
+      <form onsubmit="cadastrar(event)">
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required />
+
+        <input type="submit" value="Cadastrar" />
+      </form>
+    </div>
+  </main>
+
+  <script>
+    class Usuario {
+      constructor(nome, email, senha) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+      }
+    }
+
+    function cadastrar(event) {
+      event.preventDefault();
+
+      const nome = document.getElementById("nome").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+
+      if (!nome || !email || !senha) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      const novoUsuario = new Usuario(nome, email, senha);
+      const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+      usuarios.push(novoUsuario);
+      localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+      alert("Cadastro realizado com sucesso!");
+
+      // Redireciona para a página de conteúdo após o cadastro
+      window.location.href = "inicialPage.html";
+    }
+  </script>
+</body>
+</html>
